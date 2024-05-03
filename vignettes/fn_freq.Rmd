@@ -1,0 +1,78 @@
+---
+title: "fn_freq {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fn_freq {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# fn_freq
+
+## Description
+
+The interval and class mark are defined and the absolute, cumulative and
+ relative cumulative frequency is calculated in a table.
+
+It returns a table with the absolute, cumulative and relative cumulative
+ frequency by interval and class mark.
+
+The function requires defining:
+
+ * **df**: A data frame array.  
+ * **Imin**: Minimum value to be defined for the x-axis.
+ * **Imax**: Maximum value to be defined for the x-axis.
+ * **bin**: A bin value to define the width of the class interval.
+
+## fn_freq
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+fn_freq <- function(df, Imin, Imax, bin){
+                  breaks<- seq(Imin, Imax, bin)
+                  tmp.cut <- cut(df,breaks, right=FALSE)
+                  fre = table(tmp.cut)
+                  cum <- cumsum(fre)
+                  frc <- cum/max(cum)
+                  MCmin <- Imin+(bin/2)
+                  MCmax <- Imax-(bin/2)
+                  MC<- seq(MCmin,MCmax,bin)
+                  cbind(MC,fre,cum,frc)
+}   # End function
+```
+
+
+## Examples
+
+Falta detallar el ejemplo. This is an example ... .
+The immatures are excluded from the analysis, giving them a value of zero.
+
+```{r, warning=FALSE, message=FALSE}
+    # df <- tmp
+    # Imin <- 1
+    # Imax <- 30
+    # bin <- 1
+    # ejemplo <-  fn_freq(df, Imin, Imax, bin)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174

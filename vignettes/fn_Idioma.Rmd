@@ -1,0 +1,75 @@
+---
+title: "fn_Idioma {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fn_Idioma {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# fn_Idioma
+
+## Description
+
+The figure labels are defined as either English (1) or Spanish (2).
+
+It returns the vector **etiquetas**, it is defined by its labels, which include:
+total length, frequency, year, month, Gonadosomatic Index, maturity phase,
+and residuals. If more tags are needed, it must be redefined.
+They should be changed here in the function.
+
+
+The function requires defining:
+
+ * **idioma**: An integer value that defines the language of the labels. 
+ * **language**: A list containing the labels of each language.
+
+## fn_Idioma
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+fn_Idioma <- function(idioma,language){
+    if(idioma==1){
+        etiqueta<- unlist(language[[1]], use.names = FALSE)
+    }else{
+        etiqueta<- unlist(language[[2]], use.names = FALSE)
+    } # End if
+  etiqueta
+} # End fn_Idioma
+```
+
+
+## Examples
+
+Falta detallar el ejemplo.
+
+```{r, warning=FALSE, message=FALSE, results='asis'}
+  # Labels are in English
+  #   idioma <-   1
+  #       fn_Idioma(idioma,language)
+  # Labels are in Spanish
+  #   idioma <-   2
+  #       fn_Idioma(idioma,language)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174

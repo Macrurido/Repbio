@@ -1,0 +1,88 @@
+---
+title: "fn_coincide {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fn_coincide {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# fn_coincide
+
+## Description
+
+The coincidence between microscopy classification and GSI is analyzed. The count
+is based on the number of pairs that coincide (C) and the number of pairs that 
+are misqualified: mature by immature (MI) and immature by mature (IM).
+
+Return a filled table with the number of coincidences and discrepancies by factor
+levels and the total (rows) by category (columns): Coincidence (C), mature by
+immature (MI) and immature by mature (IM).
+
+The function requires defining:
+
+ * **N_Phase**: A numerical value indicating the number of factor levels.
+ * **df**: A data frame with the values of each individual (row) by variables (columns). 
+ * **Icut**: A numerical value is the threshold value to separate into two groups.
+ * **Coincide**: A table filled with NA, with N+1 rows, one for each factor level plus 1 for the total, and four columns, the first with the name of factor levels and the rest for the categories: C, MI and IM.
+
+ 
+## fn_coincide
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+fn_coincide <- function(N_Phase, df, Icut, Coincide){
+  df$PHIGS <- (ifelse(df$GSI >= Icut, 1, 0))
+    for(i in 1:N_Phase+1){
+    if(i < N_Phase+1){
+      OK <- ifelse(df$Phase == i & df$MATURE == df$PHIGS, 1,0)
+      MI <- ifelse(df$Phase == i & df$MATURE > df$PHIGS, 1,0)
+      IM <- ifelse(df$Phase == i & df$MATURE < df$PHIGS, 1,0)
+      Phase <- paste0("Phase_", as.roman(i))
+    }else{
+      OK <- ifelse(df$MATURE == df$PHIGS, 1,0)
+      MI <- ifelse(df$MATURE > df$PHIGS, 1,0)
+      IM <- ifelse(df$MATURE < df$PHIGS, 1,0)
+      Phase <- "Total"
+    } # End if
+    Coincide [i,] <- c(Phase,sum(OK),sum(MI),sum(IM))
+  } # End for
+  Coincide
+} # End function
+```
+
+
+## Examples
+
+Falta detallar el ejemplo.
+
+```{r, warning=FALSE, message=FALSE, results='asis'}
+  # N_Phase <- 6
+  # df <- tmp
+  # Icut <- 2
+  # Coincide <- data.frame(matrix(NA, ncol = 4, nrow = as.integer(N_Phase+1)))
+  # 
+  # ejemplo = fn_coincide(N_Phase, df, Icut, Coincide)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174

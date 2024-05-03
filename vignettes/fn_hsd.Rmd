@@ -1,0 +1,72 @@
+---
+title: "fn_hsd {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fn_hsd {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# fn_hsd
+
+## Description
+
+The row name is used to sort the factor column result from the TukeyHSD test. 
+These are renamed with the name of the phases and finally, they are sorted, in 
+decreasing mode, by the average response values (column 1).
+
+It returns a vector with the names of the phases arranged in descending order of
+the average response.
+
+
+The function requires defining:
+
+ * **hsd_out**: A TukeyHSD test table, comes from the result of the Tukey_HSD function. 
+ * **Phases_legend**: A character vector that has the name or number of maturity stages defined by the user.
+
+## fn_hsd
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+fn_hsd <- function(hsd_out,Phases_legend){
+  hsd_tmp <- hsd_out$groups[order(rownames(hsd_out$groups)), ]
+  rownames(hsd_tmp) <- Phases_legend
+  hsd_tmp <- hsd_tmp[order(hsd_tmp[,1], decreasing = TRUE),]
+  r_names <- rownames(hsd_tmp)
+  return <- r_names
+} # End fn_hsd
+```
+
+
+## Examples
+
+Falta detallar el ejemplo.
+
+```{r, warning=FALSE, message=FALSE, results='asis'}
+    # hsd_out <- tmp
+    # Phases_legend <- c("I", "II", "III", "IV", "V", "VI")
+    # 
+    # ejemplo <- fn_hsd(hsd_out,Phases_legend)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174

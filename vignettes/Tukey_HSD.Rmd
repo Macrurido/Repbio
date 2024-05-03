@@ -1,0 +1,123 @@
+---
+title: "Tukey_HSD {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tukey_HSD {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Tukey_HSD
+
+## Description
+
+This function performs multiple comparisons of treatments by means of Tukey
+only if the p value of the ANOVA_1 test is equal to or less than pval
+defined by the user. The TukeyHSD test (Tukey Honest Significant Differences) use
+the HSD.test() from the agricolae package.
+
+It returns:
+ * A TukeyHSD test table hsd_out saved as txt file as: Tukey plus the name of the model variables, acronym criteria established to classify active females to reproduction (criterio) and the txt extension.
+ *A TukeyHSD contrast plot saved as pdf file as: Tukey plus the name of the model variables, acronym criteria established to classify active females to reproduction (criterio) and the txt extension. 
+ 
+ The object "criterio" must be defined outside the function.
+For the analysis performed in Salas-Singh et al. (2022), the "criterion" object 
+presents two options:
+ * BP: Separate immature from mature;
+ * AR: Separate reproductively active mature organisms from reproductively inactive mature and immature organisms.
+
+The function requires defining:
+
+
+ * **Prob**: A summary from ANOVA-1 function.
+ * **pval**: The significance level (user defined).
+ * **HSD_main**: A mine title (user defined).
+ * **HSD_trt**: Constant( only y=model) or vector treatment applied to each
+experimental unit.
+ * **fn_hsd**: This function is included in this package Repbio, it
+returns the phase names in descending order by the average of the
+response values.
+ * **etiquetas**: A data frame containing the user-defined labels that will
+be used throughout the routine.
+ * **formula**: A formula notation y~f where y is the response (independent)
+variable and f is a factor (categorical) variable representing group
+membership.
+ * **criterio**: Criteria for separating active reproductive organisms.
+ * **Phases_legend**: A character vector with the name or number of maturity
+stages, as defined by the user.
+
+
+\item{}{Criteria for separating active reproductive organisms
+BP: Separate immature from mature
+AR: Separate reproductively active mature organisms from
+reproductively inactive mature and immature organisms.}
+\item{}{}
+
+
+
+
+See also: `fn_hsd` from agricolae (version 1.3-7).
+
+
+## Tukey_HSD
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+Tukey_HSD <- function(Prob, pval, HSD_main, HSD_trt, fn_hsd, etiquetas,
+                      formula, criterio, Phases_legend){
+  #  if (summary(Prob)[[1]][1, 5]<= 0.05){
+  hsd_out <- agricolae::HSD.test(Prob, HSD_trt, group=TRUE,console=TRUE,
+                      main=HSD_main, unbalanced = TRUE)
+  sink(paste0("04_Tablas/Tukey_", as.character(formula)[2], "_",
+              as.character(formula)[1],"_", criterio, ".txt"))
+  print(hsd_out)
+  sink()        # End sink
+
+  # LTPh Contrast plot  ----
+  r_names <- fn_hsd(hsd_out,Phases_legend) # Phase names are added.
+
+  pdf(paste0("03_Figuras/Tukey_", as.character(formula)[2],"_",
+             as.character(formula)[1],"_", criterio, ".pdf"))
+  plot(hsd_out, xlab=etiquetas[6], ylab=etiquetas[5],xaxt = "n")
+  par(usr=c(0.2,6.8,0.2,7))
+  axis(1, labels = r_names, cex.axis=0.75,
+       tick = FALSE, at=1:length(r_names))
+  dev.off()
+  #   } # End if
+}  # End function
+```
+
+
+## Examples
+
+Falta detallar el ejemplo
+
+```{r, warning=FALSE, message=FALSE, results='asis'}
+   # pval <- 0.05
+   # HSD_main <- LT/nPhase
+   # HSD_trt <- Phase
+   # exmple <- Tukey_HSD(Prob, pval, HSD_main, HSD_trt, fn_hsd, etiquetas,
+   #                      formula, criterio, Phases_legend)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174
