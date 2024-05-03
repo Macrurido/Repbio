@@ -1,0 +1,116 @@
+Repbio: Reproductive biology analysis
+<img src='images/Repbio.png' align='right' height='20%' width='20%'/>
+================
+03 mayo 2024
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+Shield: [![CC BY
+4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by/4.0/)
+
+Rbio © 2024 by Hugo Aguirre Villaseñor is licensed under a [Creative
+Commons Attribution 4.0 International
+License](http://creativecommons.org/licenses/by/4.0/).
+
+[![CC BY
+4.0](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+
+# RbioRepbio
+
+The *Repbio* package: *Reproductive biology analysis* is a
+methodological package developed to carry out the analyzes of the
+article: Salas-Singh et al. (2022) to describe updated information on
+the basic reproductive biology of a bullseye puffer **Sphoeroides
+annulatus** females and potential use of the gonadosomatic index as
+input data to assess length at 50% maturity and identify the breeding
+season. Also to verify the maturity patterns of the analysed data
+assessed by single and double sigmoid models, including the selection of
+the most suitable model. For this purpose, some functions and a vignette
+were created to explain the process step by step. The tables and figures
+were personalized.
+
+The length at 50 maturity is estimated by fitting the accumulated data
+of mature females from two models: simple sigmoid (MSS) and double
+sigmoid (MDS), using two data sources: histological (MATURE) and
+gonadosomatic index (GSI)
+
+The package consists of sixteen functions that facilitate the
+implementation of the methodology used in this analysis:
+
+`ANOVA_1`: Performs 1-way ANOVA using the function aov() from the R
+Stats Package, it returns the list av1 and save the ANOVA results as txt
+file.
+
+`BCA`: Nonparametric confidence intervals. This function takes a data
+frame (df), requires the significance value (pval) and calculates the
+nonparametric confidence intervals (CI): Symmetric (IC), Bias-corrected
+(BC) and BC accelerated (BCA).
+
+`bs`: The function ‘bs’ generates a matrix that resamples length with
+replacement. The original data set is stored in the first row, while the
+resamples are stored in the ith row Bi+1, where B is the total number of
+resamples.
+
+`fn_Barplot`: A very simple barplot is generated with no labels or marks
+for the X-axis, which serves as the basis for those that will be
+generated through the analysis, whether they are simple or compound
+figures.
+
+`fn_Boxplot`: A very simple multiple boxplots (more than one level of
+factor) is generated with no labels or marks for the X-axis. It serves
+as the basis for the figures that will be generated through the
+analysis, whether they are simple or complex.
+
+`fn_coincide`: The coincidence between microscopy classification and GSI
+is analyzed. The count is based on the number of pairs that coincide (C)
+and the number of pairs that are misqualified: mature by immature (MI)
+and immature by mature (IM).
+
+`fn_freq`: The interval and class mark are defined and the absolute,
+cumulative and relative cumulative frequency is calculated in a table.
+
+`fn_hsd`: The factor column resulting from the TukeyHSD test is sorted
+by its row name, these are renamed with the name of the phases and
+finally, they are sorted, in decreasing way, by the average response
+values (column 1).
+
+`fn_Idioma` The figure labels are defined as either English (1) or
+Spanish (2).
+
+`fn_LTGSI`: The scattering plot is generated without any labels or marks
+for the X-axis, which is very simple. A horizontal line is included with
+the threshold value, which serves as the basis for the figures that will
+be generated through the analysis, whether they are simple or compound
+figures.
+
+`fn_porcentaje`: Calculates the percentage of each category (rows) per
+column (month), and also includes the total number of data per column
+(N).
+
+`IC_plot`: Cumulative percentage of mature females against length.
+Fitting model for the estimation of the L50 values and its confidence
+interval.
+
+`Label_Phases`: Returns the maturity phase label that will be used in
+tables or figures. It returns a ‘Phases_legend’ vector in roman numeral
+or name in English or Spanish.
+
+`modelo`: Fit the model using the nlsLM function. For more details see
+the function documentation: nlsLM() from minpack.lm (version 1.2-4).
+
+`strb`: This function helps in the visual search of the starting input
+parameters for nlsLM, to fit the specified model (mod), using a graph
+for visual adjustment of model parameters (Trial and Error Strategy).
+
+`Tukey_HSD`: This function performs multiple comparisons of treatments
+by means of Tukey only if the p value of the ANOVA_1 test is equal to or
+less than pval defined by the user. HSD.test() came from the agricolae
+package.
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022).
+Reproductive biology of the bullseye puffer *Sphoeroides annulatus*:
+Gonadosomatic index and its suitability for estimating length at
+maturity. Journal of Fish Biology, 101(5),
+1119-1133.https://doi.org/10.1111/jfb.15174
