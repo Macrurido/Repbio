@@ -8,3 +8,4 @@
 ^\.github$
 ^images
 ^README\.Rmd$
+^LICENSE\.md$
