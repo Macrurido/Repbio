@@ -32,7 +32,7 @@ were personalized.
 The length at 50 maturity is estimated by fitting the accumulated data
 of mature females from two models: simple sigmoid (MSS) and double
 sigmoid (MDS), using two data sources: histological (MATURE) and
-gonadosomatic index (GSI)
+gonadosomatic index (GSI).
 
 The package consists of sixteen functions that facilitate the
 implementation of the methodology used in this analysis:
