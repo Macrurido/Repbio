@@ -17,17 +17,17 @@ License](http://creativecommons.org/licenses/by/4.0/).
 
 # Repbio
 
-The *Repbio* package: *Reproductive biology analysis* is a
+The **Repbio** package: **Reproductive biology analysis** is a
 methodological package developed to carry out the analyzes of the
 article: Salas-Singh et al. (2022) to describe updated information on
-the basic reproductive biology of a bullseye puffer **Sphoeroides
-annulatus** females and potential use of the gonadosomatic index as
-input data to assess length at 50% maturity and identify the breeding
-season. Also to verify the maturity patterns of the analysed data
-assessed by single and double sigmoid models, including the selection of
-the most suitable model. For this purpose, some functions and a vignette
-were created to explain the process step by step. The tables and figures
-were personalized.
+the basic reproductive biology of a bullseye puffer *Sphoeroides
+annulatus* females and potential use of the gonadosomatic index as input
+data to assess length at 50% maturity and identify the breeding season.
+Also to verify the maturity patterns of the analysed data assessed by
+single and double sigmoid models, including the selection of the most
+suitable model. For this purpose, some functions and a vignette were
+created to explain the process step by step. The tables and figures were
+personalized.
 
 The length at 50 maturity is estimated by fitting the accumulated data
 of mature females from two models: simple sigmoid (MSS) and double
