@@ -1,21 +1,21 @@
 Repbio: Reproductive biology analysis
 <img src='images/Repbio.png' align='right' height='20%' width='20%'/>
 ================
-03 mayo 2024
+04 mayo 2024
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 Shield: [![CC BY
 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by/4.0/)
 
-Rbio © 2024 by Hugo Aguirre Villaseñor is licensed under a [Creative
+Repbio © 2024 by Hugo Aguirre Villaseñor is licensed under a [Creative
 Commons Attribution 4.0 International
 License](http://creativecommons.org/licenses/by/4.0/).
 
 [![CC BY
 4.0](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
 
-# RbioRepbio
+# Repbio
 
 The *Repbio* package: *Reproductive biology analysis* is a
 methodological package developed to carry out the analyzes of the
