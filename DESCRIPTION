@@ -1,0 +1,35 @@
+Package: Repbio
+Type: Package
+Title: Reproductive biology analysis
+Version: 0.1.0
+Author: Hugo Aguirre-Villaseñor
+Maintainer: Hugo Aguirre-Villaseñor <hugo.aguirre@imipas.gob.mx>
+Description: Reproductive biology analysis is a methodological package developed to carry out the
+    analyzes of the article: Salas-Singh et al. (2022) to describe updated information on the basic
+    reproductive biology of a bullseye puffer Sphoeroides annulatus females and potential use of the
+    gonadosomatic index as input data to assess length at 50% maturity and identify the breeding season. 
+    Also to verify the maturity patterns of the analysed data assessed by single and
+    double sigmoid models, including the selection of the most suitable model. 
+    For this purpose, some functions and a vignette were created to explain 
+    the process step by step. The tables and figures were personalized.
+Depends: R (>= 4.1.0)    
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat (>= 3.1.6),
+          knitr (>= 1.44),
+          rmarkdown (>= 2.25),
+	  htmltools (>= 0.5.7)
+Config/testthat/edition: 3
+RoxygenNote: 7.3.1
+Imports:
+    agricolae (>= 1.3.5),
+    expss (>= 0.11.4),
+    graphics (>= 3.6.2),
+    grDevices (>= 3.6.2),
+    investr (>= 1.4.2),
+    minpack.lm (>= 1.2.3),
+    stats (>= 3.6.2),
+    utils (>= 3.6.2)
+VignetteBuilder: knitr
+URL: https://macrurido.github.io/Repbio/

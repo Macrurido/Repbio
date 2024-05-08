@@ -1,0 +1,94 @@
+---
+title: "fn_LTGSI {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fn_LTGSI {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# fn_LTGSI
+
+## Description
+
+The scattering plot is generated without any labels or marks for the X-axis, 
+which is very simple. A horizontal line is included with the threshold value, 
+which serves as the basis for the figures that will be generated through the 
+analysis, whether they are simple or compound figures.
+
+A scatter plot of the y value by factor level across the x range also includes
+a horizontal dashed line representing the threshold value.
+
+Colors are manipulated with the rgb() function of the grDevices package
+
+
+The function requires defining:
+
+
+ * **x**: A vector containing the values of the independent variable.. 
+ * **y**: A vector containing the values of the dependent variable.. 
+ * **df**: A data frame. 
+ * **xl**: A label for the X-axis. 
+ * **yl**: A label for the y-axis. 
+ * **Icut**: A threshold Value. 
+ * **ylimit**: A vector value with a minimum and maximum limit for y-axis. 
+
+
+See also: rgb() from grDevices (version 3.6.2)
+
+
+## fn_LTGSI
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+fn_LTGSI <- function(x, y, df, xl, yl, Icut, ylimit){
+  plot(x , y,
+       col = rgb(0,0,0,1/4),
+       xlab= xl,
+       ylab= yl,
+       pch= c(0,1,15,16,17,2)[as.numeric(df$Phase)],
+       ylim= ylimit,
+       xaxt="n"
+      )
+
+      abline(h= Icut,col="black",lty = 2)
+}  # End function fn_LTGSI
+```
+
+
+## Examples
+
+Falta detallar el ejemplo.
+
+```{r, warning=FALSE, message=FALSE, results='asis'}
+ #  x <-x
+ #  y <- y
+ #  df <- tmp
+ #  xl <- etiquetas[1]
+ #  yl <- etiquetas[3]
+ #  Icut <- 2.3
+ #  ylimit <- c(0,45)
+ # ejemplo <- fn_LTGSI(x, y, df, xl, yl, Icut, ylimit)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174

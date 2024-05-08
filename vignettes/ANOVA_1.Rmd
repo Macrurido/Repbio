@@ -1,0 +1,83 @@
+---
+title: "ANOVA_1 {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ANOVA_1 {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# ANOVA_1
+
+## Description
+
+The function `ANOVA_1` performs 1-way ANOVA using the function aov() from the R 
+stats package.
+
+Inside the function: The Analysis of Variance is performed using the aov() function
+from package stats (version 3.6.2). Results are aved in a txt file named as:
+ANOVA plus the name of the model variables, acronym criteria established to
+classify active females to reproduction (criterio) and the txt extension.
+
+For the analysis performed in Salas-Singh et al. (2022), the "criterion" object presents two options:
+
+ * BP: Separate immature from mature;
+ * AR: Separate reproductively active mature organisms from reproductively inactive mature and immature organisms.
+
+The function requires defining:
+
+ * **formula**: A formula specifying the model used
+ * **df**: A data frame that displays the data by factor level (rows) and month (column).
+ * **criterio**: Criteria for separating active reproductive organisms
+
+See also: `aov` and `anova` from the package stats (version 3.6.2)
+
+
+## ANOVA_1
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+ANOVA_1 <- function(formula,df,criterio){
+            av1 <- aov(formula,df)
+            anova1 <- anova(av1)
+
+            sink(paste0("04_Tablas/ANOVA_",as.character(formula)[2],
+                  as.character(formula)[3],"_",as.character(criterio),".txt"))
+                  print(anova1)    # Guardo salida ANOVA en archivo txt
+            sink()        # Cerrar sink
+            av1
+  } #End function
+```
+
+
+## Examples
+
+Falta detallar el ejemplo
+
+```{r, warning=FALSE, message=FALSE, results='asis'}
+#formula <- LT~Phase
+#criterio <- "AR"
+#ejemplo <- ANOVA_1(formula,df,criterio)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174

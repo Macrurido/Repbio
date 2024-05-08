@@ -1,0 +1,120 @@
+---
+title: "BCA {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BCA {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# BCA Nonparametric confidence intervals
+
+## Description
+
+The function `BCA` Calculates the percentage of each category (rows) 
+
+
+This function takes a data frame (df), requires the significance
+value (pval) and calculates the nonparametric confidence
+intervals (CI): Symmetric (IC), Bias-corrected (BC) and BC accelerated (BCA)
+
+It returns a customized table using the expss package. The table
+`b_BCA` for each model parameters (row): original (opt), low (lw) 
+and high (up) CI, bias and coefficient of variation (CV): Opt, IClw,
+ICup, BClw, BCup, BCAlw, BCAup, Bias, CV.
+
+
+The function requires defining:
+
+
+ * **df**: A data frame array.  
+ * **pval**: significance level defined by the user.
+ * **B**: An integer value, specify the number of resamples.
+
+
+Seealso: `expss` from the package expss (version 0.11.6)
+
+
+## BCA
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+BCA <-function(df, pval, B){
+  whichcol <- which(apply(is.na(df),2,sum)==0)
+  d <- df[,whichcol]
+  nrd <- nrow(d)
+  # Values are defined
+  Opt <- d[1, ]
+  x <- (d[2:nrd, ])
+  Med <-apply(x,2,median)
+  Avg <- apply(x,2,mean)
+  de <- apply(x,2,sd)
+  # CI Bias-corrected
+  menor <- as.vector(sum_col(d[-1 , ] < d[rep(1, nrow(d) - 1), ],na.rm=TRUE)/B )
+  Z <-  qnorm(menor , mean= 0, sd= 1,  lower.tail = FALSE)
+  Plw <- 1-pnorm(2*Z-1.96,mean= 0, sd= 1, pval, lower.tail = FALSE)
+  Pup <- 1-pnorm(2*Z+1.96,mean= 0, sd= 1, pval, lower.tail = FALSE)
+  Bias <- (100*((Avg-Opt)/Opt))
+  CV <- de/Avg
+  # CI Bias-corrected and accelerated BCA
+  pk2s <- sum_col(d[-1 , ] - d[rep(1, nrow(d) - 1), ],na.rm=TRUE)
+  num <- (pk2s)^3
+  den <- (pk2s)^2
+  ac <- abs(num/(6*den^(3/2)))
+  # CI BCA
+  Zlw <- abs((pval/2)+(((pval/2)-Plw)/(1-ac*((pval/2)+Plw))))
+  # To avoid errors, when the value of a parameter is repeated (roughly)
+  Zlw[menor == 0]  <- pval/2
+  Zlw[Zlw > 1]  <- pval/2
+  Zup <- abs((1-pval/2)+(((1-pval/2)-Pup)/(1-ac*((1-pval/2)+Pup))))
+  Zup[menor == 0]  <- 1-pval/2
+  Zup[Zup > 1]  <- 1-pval/2
+
+  # CI: symmetric, BC, BCa
+  intlw <-  rep(pval/2,length(whichcol))
+  intup <-  rep(1-pval/2,length(whichcol))
+  int <-  rbind(intlw,intup,Plw,Pup,Zlw,Zup)
+  int[is.na(int)] <- 1  # Tengo que ver como arreglar mientras 1
+  int                     # pedir que si es Na,no haga nada y siga
+  # The table is saved
+  for(l in 1:length(whichcol)){
+    ICS <-  quantile(d[,l],int[,l])
+    b_BCA[l,] <- unlist(t(c(Opt=Opt[l],ICS,Bias=Bias[l],CV=CV[l])))
+  }     # End for l
+  print(b_BCA)
+}     # End function BCA
+```
+
+
+## Examples
+
+Falta detallar el ejemplo
+
+```{r, warning=FALSE, message=FALSE}
+#df <- tmp
+#pval <- 0.05
+#B <- 300
+#ejemplo <- BCA(df, 0.05, B)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174

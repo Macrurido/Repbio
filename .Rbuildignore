@@ -1,0 +1,11 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^README.Rmd
+^Rbi_0.1.0.tar
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^images
+^README\.Rmd$
+^LICENSE\.md$

@@ -1,0 +1,106 @@
+---
+title: "Label_Phases {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Label_Phases {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Label_Phases
+
+## Description
+
+The function returns the maturity phase label that will be used in tables or
+figures. It returns a 'Phases_legend' vector in roman numeral or name in English
+or Spanish according to the user's choice.
+
+Arguments are 'genero' (Gender),'idioma' (Lenguage) and Phases (maturity phases)
+ * genero: Value *1* selects Females and *2* Males
+ * idioma: Value *1* selects English language and *2* Spanish language
+ * Phases: Value *1* selects the roman numeral and *2* phases name
+
+
+The function requires defining:
+
+ * **genero**: An integer value to define the labels gender.
+ * **idioma**: An integer value to define the labels language.
+ * **Phases**: An integer value to define the labels of the phases of maturity.
+
+See also: `aov` and `anova` from the package stats (version 3.6.2)
+
+
+## Label_Phases
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+Label_Phases <- function(genero,idioma, Phases) {
+  if(genero==1){
+    if(Phases==1){
+      Phases_legend <- c("I", "II", "III","IV","V","VI")
+    }else{
+      if(idioma==1){
+        Phases_legend <- c("Immature","Developing","Spawning \n capable",
+                           "Actively \n spawning","Spent","Regenerating")
+      }else{
+        #Sys.setlocale("LC_ALL", "ES_ES.UTF-8")  # Spanish characters
+        Phases_legend <- c("Inmaduro","Desarrollo","Capaz de \n desovar",
+                           "Desovador \n activo","Desovado",
+                           "Regeneraci\u00F3n")
+      } # End if idioma
+    } # End if Phases
+  }else{
+    if(Phases==1){
+      Phases_legend <- c("I", "II", "III","IV")
+    }else{
+      if(idioma==1){
+        Phases_legend <- c("Immature","Developing","Actively \n spawning",
+                           "Resting")
+      }else{
+        #Sys.setlocale("LC_ALL", "ES_ES.UTF-8")  # Spanish characters
+        Phases_legend <- c("Inmaduro","Desarrollo",
+                           "Eyaculador \n activo","Regeneraci\u00F3n")
+      } # End if idioma
+    } # End if Phases
+  } # End if genero
+
+} # End function
+```
+
+
+## Examples
+
+Falta detallar el ejemplo
+
+```{r, warning=FALSE, message=FALSE, results='asis'}
+    # Label_Phases(1, 1, 1) # returns roman numeral for females
+    # Label_Phases(1, 2, 1) # returns roman numeral for females
+    # Label_Phases(1, 1, 2) # returns phases name in English for females
+    # Label_Phases(1, 2, 2) # returns phases name in Spanish for females
+    # Label_Phases(2, 1, 1) # returns roman numeral for males
+    # Label_Phases(2, 2, 1) # returns roman numeral for males
+    # Label_Phases(2, 1, 2) # returns phases name in English for males
+    # Label_Phases(2, 2, 2) # returns phases name in Spanish for males
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174

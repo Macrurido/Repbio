@@ -1,0 +1,85 @@
+---
+title: "fn_Barplot {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fn_Barplot {Repbio}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# fn_Barplot
+
+## Description
+
+A very simple barplot is generated with no labels or marks for the X-axis,
+which serves as the basis for those that will be generated through the
+analysis, whether they are simple or compound figures.
+
+It returns a simple barplot that can be upgraded according to needs.
+
+The function requires defining:
+
+ * **df**: A list of matrices with frequencies values.
+ * **i**: A numeric value of the ith object in the list.
+ * **densidad**: a vector that specifies the shading lines density (in lines
+per inch). By default, it is NULL, which means no shading lines. For
+more details, see the help of the barplot() function.
+ * **angulo**: a vector that specifies the slope of shading lines. For
+more details, see the help of the barplot() function
+
+See also: `barplot` from the package graphics (version 3.6.2)
+
+
+## fn_Barplot
+
+The function is included in the `Repbio` package **Reproductive biology analysis**.
+
+
+```{r setup}
+#library(Repbio)
+```
+
+
+The function is detailed below.
+
+```{r, warning=FALSE, message=FALSE}
+fn_Barplot <- function(df,i,densidad,angulo){
+  barplot(df[[i]],
+          xlab="",
+          xaxt = "n",
+          legend = FALSE,
+          density= densidad,
+          angle=angulo,
+          border="black",
+          col="black"
+  )
+} # End function
+```
+
+
+## Examples
+
+Falta detallar el ejemplo For example, for two sampled years i = 2 and six factor levels in the
+ analyzed variable.
+
+```{r, warning=FALSE, message=FALSE, results='asis'}
+      # df <- tmp
+      # i <- 2
+      # densidad <- c(10,10,30,30,30,10)
+      # angulo <- c(3,30,60,90,120,150)
+      # 
+      # fn_Barplot(df,i,density,angle)
+```
+
+
+## References
+
+Salas‐Singh, C., Morales‐Bojórquez, E., & Aguirre‐Villaseñor, H. (2022). Reproductive biology of the bullseye puffer *Sphoeroides annulatus*: Gonadosomatic index and its suitability for estimating length at maturity. Journal of Fish Biology, 101(5), 1119-1133.https://doi.org/10.1111/jfb.15174
