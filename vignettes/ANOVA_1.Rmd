@@ -1,6 +1,5 @@
 ---
-title: "ANOVA_1 {Repbio} <img src='man/figures/logo.png' align='right' height='20%' width='20%'/>"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+title: "ANOVA_1 {Repbio} "
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ANOVA_1 {Repbio}}
