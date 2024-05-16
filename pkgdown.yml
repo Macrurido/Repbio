@@ -1,0 +1,25 @@
+pandoc: 3.1.11
+pkgdown: 2.0.9
+pkgdown_sha: ~
+articles:
+  ANOVA_1: ANOVA_1.html
+  BCA: BCA.html
+  bs: bs.html
+  fn_Barplot: fn_Barplot.html
+  fn_Boxplot: fn_Boxplot.html
+  fn_coincide: fn_coincide.html
+  fn_freq: fn_freq.html
+  fn_hsd: fn_hsd.html
+  fn_Idioma: fn_Idioma.html
+  fn_LTGSI: fn_LTGSI.html
+  fn_porcentaje: fn_porcentaje.html
+  IC_plot: IC_plot.html
+  Label_Phases: Label_Phases.html
+  modelo: modelo.html
+  strb: strb.html
+  Tukey_HSD: Tukey_HSD.html
+last_built: 2024-05-16T20:36Z
+urls:
+  reference: https://macrurido.github.io/Repbio/reference
+  article: https://macrurido.github.io/Repbio/articles
+
