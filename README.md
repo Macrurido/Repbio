@@ -1,7 +1,7 @@
 Repbio: Reproductive biology analysis
-<img src='images/Repbio.png' align='right' height='20%' width='20%'/>
+<img src='man/figures/logo.png' align='right' height='20%' width='20%'/>
 ================
-04 mayo 2024
+16 mayo 2024
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
