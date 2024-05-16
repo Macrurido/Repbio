@@ -32,4 +32,4 @@ Imports:
     stats (>= 3.6.2),
     utils (>= 3.6.2)
 VignetteBuilder: knitr
-URL: https://github.com/Macrurido/Repbio.git
+URL: https://github.com/Macrurido/Repbio.git, https://macrurido.github.io/Repbio/
