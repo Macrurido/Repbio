@@ -1,13 +1,8 @@
 bibentry(
   bibtype  = "Manual",
-  title    = Repbio: Reproductive biology analysis,
-  author   = Hugo Aguirre-Villaseñor,
-  journal  = ,
+  title    = "Repbio: Reproductive biology analysis",
+  author   = "Hugo Aguirre-Villaseñor",
   year     = 2024,
-  volume   = ,
-  number   = ,
-  pages    = ,
-  doi      = ,
-  note = R package version 0.1.0,
-  url = https://macrurido.github.io/Repbio/, https://github.com/Macrurido/Repbio.git
+  note = "R package version 0.1.0",
+  url = "https://macrurido.github.io/Repbio/, https://github.com/Macrurido/Repbio.git"
 )
