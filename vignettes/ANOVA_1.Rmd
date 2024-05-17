@@ -1,5 +1,5 @@
 ---
-title: "ANOVA_1 {Repbio} "
+title: "ANOVA_1 {Repbio}"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ANOVA_1 {Repbio}}

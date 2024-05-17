@@ -1,5 +1,5 @@
 ---
-title: "bs {Repbio} <img src='man/figures/logo.png' align='right' height='20%' width='20%'/>"
+title: "bs {Repbio}"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
