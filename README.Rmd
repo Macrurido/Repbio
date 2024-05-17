@@ -7,6 +7,7 @@ output: rmarkdown::github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+Repbio <a href="https://macrurido.github.io/Repbio/"><img src="man/figures/logo.png" align="right" height="137" alt="Repbio website" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 

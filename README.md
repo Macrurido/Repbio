@@ -1,7 +1,9 @@
 Repbio: Reproductive biology analysis
-<img src='man/figures/logo.png' align='right' height='20%' width='20%'/>
 ================
-16 mayo 2024
+17 mayo 2024
+
+Repbio
+<a href="https://macrurido.github.io/Repbio/"><img src="man/figures/logo.png" align="right" height="137" alt="Repbio website" /></a>
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
