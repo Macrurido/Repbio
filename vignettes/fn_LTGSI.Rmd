@@ -1,5 +1,5 @@
 ---
-title: "fn_LTGSI {Repbio} <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+title: "fn_LTGSI {Repbio} "
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
