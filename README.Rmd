@@ -1,5 +1,5 @@
 ---
-title: "Repbio: Reproductive biology analysis <img src='images/Repbio.png' align='right' height='20%' width='20%'/>"
+title: "Repbio <a href="https://macrurido.github.io/Morfi/"><img src="man/figures/logo.png" align="right" height="137" alt="Repbio website" /></a>"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: rmarkdown::github_document
 ---
