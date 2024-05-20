@@ -32,4 +32,4 @@ Imports:
     stats (>= 3.6.2),
     utils (>= 3.6.2)
 VignetteBuilder: knitr
-URL: https://macrurido.github.io/Repbio/
+URL: https://macrurido.github.io/Repbio/, https://macrurido.github.io/Morefi/
